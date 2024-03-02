@@ -1,3 +1,8 @@
+const rock = document.querySelector('#rock');
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+
+
 /**
  * function that randomly returns "Rock", "Paper", "Scissors" as the 
  * computer's choice.
@@ -5,9 +10,12 @@
  */
 function getComputerChoice(){
 
-    let choices = ["Rock","Paper","Scissors"];
+    let choices = ["rock","paper","scissors"];
     return choices[(Math.floor(Math.random()*choices.length))];
 }
+
+
+
 
 /**
  * function that plays a single round of Rock Paper Scissors. 
@@ -18,67 +26,46 @@ function getComputerChoice(){
  */
 
 function playRound(playerSelection, computerSelection){
-    playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerSelection.toLowerCase();
-
     // check on conditions that leads to a win or a lose
     if(playerSelection==='rock'&& computerSelection==='scissors'|| 
     playerSelection==='scissors'&& computerSelection==='paper'||
     playerSelection==='paper'&& computerSelection==='rock'){
+        console.log(`player choice ${playerSelection}`)
+        console.log(`computer choice ${computerSelection}`);
         console.log(`This round, You win! ${playerSelection} beats ${computerSelection}`);
-        return 'win';
+        //return 'win';
     } 
     else if(computerSelection==='rock'&& playerSelection==='scissors'|| 
     computerSelection==='scissors'&& playerSelection==='paper'||
     computerSelection==='paper'&& playerSelection==='rock') {
+        console.log(`player choice ${playerSelection}`)
+        console.log(`computer choice ${computerSelection}`);
         console.log(`This round, You Lose! ${computerSelection} beats ${playerSelection}`);
-        return 'lose';
+        //return 'lose';
     } else {
-        console.log(` A tie! ${playerSelection} and ${computerSelection} are equals`);
-        return 'draw';
+        console.log(`player choice ${playerSelection}`)
+        console.log(`computer choice ${computerSelection}`);
+       console.log(` A tie! ${playerSelection} and ${computerSelection} are equals`);
+        //return 'draw';
     }
 
 
 }
-/**
- * Function that lets you play 5 rounds of the game, keeps score and reports the 
- * winner or loser at the end.
- */
-function playGame(){
-    // variable to store player and random computer choice
-    let playerSelection, computerSelection;
-
-    //variable to store player and computer scores
-    let playerScore=0, computerScore=0;
-
-    // variable to store the results of each round
-    let roundResult;
 
 
-    for (let index = 0; index < 5; index++) {
-
-        playerSelection = prompt("Which is your weapon ? [rock, paper, scissors]");
-        computerSelection = getComputerChoice().toLowerCase();
-        roundResult = playRound(playerSelection,computerSelection);
-
-        if (roundResult === 'win'){
-            playerScore=playerScore+1;
-        } else if (roundResult === 'lose'){
-            computerScore=computerScore+1;
-        }else if(roundResult ==='draw'){
-            playerScore = playerScore+0.5;
-            computerScore=computerScore+0.5;
-        }
-    }
-
-    if (playerScore > computerScore){
-        console.log(`player score: ${playerScore} and computer score: ${computerScore}`)
-        console.log("You win!")
-    } else if (computerScore > playerScore){
-        console.log(`player score: ${playerScore} and computer score: ${computerScore}`)
-        console.log("You Lose!");
-    } else{
-        console.log(`player score: ${playerScore} and computer score: ${computerScore}`)
-        console.log("It is a tie!");
-    }
+rock.addEventListener('click',()=>{
+    computerSelection = getComputerChoice();
+    playRound('rock',computerSelection);
 }
+);
+
+paper.addEventListener("click",()=>{
+    computerSelection = getComputerChoice();
+    playRound('paper',computerSelection);
+}
+);
+
+scissors.addEventListener("click",()=>{
+    computerSelection = getComputerChoice();
+    playRound('scissors',computerSelection);
+});
